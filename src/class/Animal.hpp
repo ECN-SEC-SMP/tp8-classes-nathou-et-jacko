@@ -4,6 +4,8 @@
 // Includes
 // ================================================================================
 #include <string>
+#include <stdexcept>
+#include "Attaque.hpp"
 using namespace std;
 
 // ================================================================================
@@ -24,7 +26,7 @@ protected:
     int x;
     int y;
     bool living;
-    // Attaque typeAttaque;
+    Attaque typeAttaque;
 public:
     /**
      * @brief Construct a new Animal object
@@ -65,7 +67,12 @@ public:
      */
     bool getVivant() const;
 
-    // Attaque getAttaque()
+    /**
+     * @brief Get the Attaque object
+     * 
+     * @return Attaque 
+     */
+    Attaque getAttaque() const;
 
     /**
      * @brief Set the Vivant object
@@ -81,7 +88,7 @@ public:
      * @return true
      * @return false
      */
-    bool attaqueAnimal(Animal &a);
+    bool attaque(Animal &a);
 
     /**
      * @brief Define the Attaque function for children

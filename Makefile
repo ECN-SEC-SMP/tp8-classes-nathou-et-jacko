@@ -10,37 +10,55 @@ all: start
 
 # La cible "deleteAll" est exécutée en tapant la commande "make deleteAll"
 deleteAll :
-	@echo suppression du contenu du répertoire ../bin
+	@echo "Suppression du contenu du répertoire $(BIN)"
 	rm -f $(BIN)/*.o $(BIN)/*.bin
 
 # La cible "compilUtil" est exécutée en tapant la commande "make compilUtil"
 compilUtil :
-	@echo Compilation Util
-	$(GPP) $(SRC)/util.cpp -o $(BIN)/util.o -c
-
-# La cible "compilAnimal" est exécutée en tapant la commande "make compilAnimal"
-compilAnimal :
-	@echo Compilation Animal
-	$(GPP) $(SRC_CLASS)/Animal.cpp -o $(BIN)/Animal.o -c
-
-# La cible "compilGame" est exécutée en tapant la commande "make compilGame"
-compilGame : compilAnimal
-	@echo Compilation Game
-	$(GPP) $(SRC_CLASS)/Game.cpp $(INCLUDE) $(BIN)/Animal.o -o $(BIN)/Game.o -c
+	@echo "Compilation Util"
+	$(GPP) -c $(SRC)/util.cpp -o $(BIN)/util.o
 
 # La cible "compilAttack" est exécutée en tapant la commande "make compilAttack"
 compilAttack : compilUtil
-	@echo Compilation Attack
-	$(GPP) $(SRC_CLASS)/Attaque.cpp $(INCLUDE) $(BIN)/util.o -o $(BIN)/attaque.o -c
+	@echo "Compilation Attack"
+	$(GPP) -c $(SRC_CLASS)/Attaque.cpp -o $(BIN)/Attaque.o
+
+# La cible "compilAnimals" est exécutée en tapant la commande "make compilAnimals"
+compilAnimals : $(BIN)/Animal.o $(BIN)/Lion.o $(BIN)/Ours.o $(BIN)/Pierre.o $(BIN)/Loup.o
+
+$(BIN)/Animal.o : $(SRC_CLASS)/Animal.cpp
+	@echo "Compilation Animal.cpp"
+	$(GPP) -c $< -o $@
+
+$(BIN)/Lion.o : $(SRC_CLASS)/Lion.cpp
+	@echo "Compilation Lion.cpp"
+	$(GPP) -c $< -o $@
+
+$(BIN)/Ours.o : $(SRC_CLASS)/Ours.cpp
+	@echo "Compilation Ours.cpp"
+	$(GPP) -c $< -o $@
+
+$(BIN)/Pierre.o : $(SRC_CLASS)/Pierre.cpp
+	@echo "Compilation Pierre.cpp"
+	$(GPP) -c $< -o $@
+
+$(BIN)/Loup.o : $(SRC_CLASS)/Loup.cpp
+	@echo "Compilation Loup.cpp"
+	$(GPP) -c $< -o $@
+
+# La cible "compilGame" est exécutée en tapant la commande "make compilGame"
+compilGame : compilAnimals compilAttack
+	@echo "Compilation Game"
+	$(GPP) -c $(SRC_CLASS)/Game.cpp -o $(BIN)/Game.o
 
 # La cible "compilMain" est exécutée en tapant la commande "make compilMain"
-compilMain : deleteAll compilGame compilAttack
-	@echo Compilation de main
-	$(GPP) $(SRC)/main.cpp $(INCLUDE) $(BIN)/*.o -o $(BIN)/main.bin
+compilMain : deleteAll compilAnimals compilGame
+	@echo "Compilation de main"
+	$(GPP) $(SRC)/main.cpp $(BIN)/*.o -o $(BIN)/main.bin
 
 # La cible "launchMain" est exécutée en tapant la commande "make launchMain"
 launchMain :
-	@echo Lancement de main
+	@echo "Lancement de main"
 	$(BIN)/main.bin
 
 # La cible "start" est exécutée en tapant la commande "make start"

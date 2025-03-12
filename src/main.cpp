@@ -2,7 +2,7 @@
 
 #include "util.hpp"
 #include "class/Game.hpp"
-#include "Attaque.hpp"
+#include "class/Attaque.hpp"
 
 
 int main(int argc, char const *argv[]) {
