@@ -24,7 +24,8 @@ compilAttack : compilUtil
 	$(GPP) -c $(SRC_CLASS)/Attaque.cpp -o $(BIN)/Attaque.o
 
 # La cible "compilAnimals" est exécutée en tapant la commande "make compilAnimals"
-compilAnimals : $(BIN)/Animal.o $(BIN)/Lion.o $(BIN)/Ours.o $(BIN)/Pierre.o $(BIN)/Loup.o
+# compilAnimals : $(BIN)/Animal.o $(BIN)/Lion.o $(BIN)/Ours.o $(BIN)/Pierre.o $(BIN)/Loup.o
+compilAnimals :
 
 $(BIN)/Animal.o : $(SRC_CLASS)/Animal.cpp
 	@echo "Compilation Animal.cpp"
