@@ -24,28 +24,32 @@ AttackType getRandAttack(void);
 // Class def
 // ================================================================================
 
-Attaque::Attaque(void) {
-    this->attack = getRandAttack();
-}
+Attaque::Attaque(void) : attack{getRandAttack()} {}
 
-Attaque::Attaque(AttackType attack) {
-
-}
+Attaque::Attaque(AttackType attack) : attack{attack} {}
 
 Attaque::~Attaque() {
 
 }
 
 AttackType Attaque::getTypeAttaque() const {
-
+    return this->attack;
 }
 
 bool Attaque::resoudreAttaque(Attaque &a) const {
-
+    // Rock > Cisor
+    // Paper > Rock
+    // Cisor > Paper
+    if (this->attack == AttackType::ROCK && a.attack == AttackType::CISOR ||
+        this->attack == AttackType::PAPER && a.attack == AttackType::ROCK ||
+        this->attack == AttackType::CISOR && a.attack == AttackType::PAPER) {
+        return true;
+    }
+    return false;
 }
 
 std::string Attaque::getNomAttaque() const {
-    return attackTypes_toString[this->attack];
+    return g_attackTypes_toString.at(this->attack);
 }
 
 // ================================================================================

@@ -20,7 +20,7 @@ enum class AttackType {
     CISOR
 };
 
-std::map<AttackType, std::string> attackTypes_toString = {
+const std::map<AttackType, std::string> g_attackTypes_toString = {
     { AttackType::ROCK, "Rock" },
     { AttackType::PAPER, "Paper" },
     { AttackType::CISOR, "Cisor" }
