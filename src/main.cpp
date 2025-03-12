@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "util.hpp"
+#include "class/Game.hpp"
 #include "Attaque.hpp"
 
 
@@ -14,8 +15,6 @@ int main(int argc, char const *argv[]) {
         att = Attaque();
         std::cout << i << ". " << att.getNomAttaque() << std::endl;
     }
-    
-    
 
     return 0;
 }
