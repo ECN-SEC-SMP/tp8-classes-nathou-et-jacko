@@ -15,33 +15,39 @@ bool Game::isEmpty()
     {
         for (Animal *animal : vect)
         {
-            if (animal != NULL && animal->getVivant() == 1)
-            {
-                return true;
-            }
+            // if (animal != NULL && animal->getVivant() == 1)
+            // {
+            //     return true;
+            // }
         }
     }
     return false;
 }
 
+Game::~Game()
+{
+}
+
 void Game::printBoardGame()
 {
 
-    for (int i = 0; i < maxY + 3; i++)
+    for (int i = 0; i < maxY; i++)
     {
-        cout << "-";
+        cout << "----";
     }
     cout << endl;
     for (vector<Animal *> vect : this->board)
     {
         for (Animal *animal : vect)
         {
-            cout << '| ' << animal->getName().at(0) << ' ';
+            cout << "| " << 'a' << ' ';
         }
-        cout << '|' << endl;
+        cout << "|" << endl;
     }
-    for (int i = 0; i < maxY + 3; i++)
+    for (int i = 0; i < maxY; i++)
     {
-        cout << "-";
+        cout << "----";
     }
+    cout << endl;
+
 }
