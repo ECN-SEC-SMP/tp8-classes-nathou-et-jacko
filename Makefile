@@ -14,8 +14,13 @@ compilUtil :
 	@echo Compilation Util
 	$(GPP) $(SRC)/util.cpp -o $(BIN)/util.o -c
 
+# La cible "compilAttack" est exécutée en tapant la commande "make compilAttack"
+compilAttack :
+	@echo Compilation Attack
+	$(GPP) $(SRC)/Attaque.cpp -o $(BIN)/attaque.o -c
+
 # La cible "compilMain" est exécutée en tapant la commande "make compilMain"
-compilMain : deleteAll compilUtil
+compilMain : deleteAll compilUtil compilAttack
 	@echo Compilation de main
 	$(GPP) $(SRC)/main.cpp $(BIN)/*.o -o $(BIN)/main.bin
 
