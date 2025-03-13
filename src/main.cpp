@@ -21,22 +21,22 @@ void testAnimal_setVivant(void);
 void testClass_Animal(void);
 
 void testPierre_constru(void);
-void testPierre_setAttaquee(void);
+void testPierre_setAttaque(void);
 void testPierre_deplace(void);
 void testClass_Pierre(void);
 
 void testLoup_constru(void);
-void testLoup_setAttaquee(void);
+void testLoup_setAttaque(void);
 void testLoup_deplace(void);
 void testClass_Loup(void);
 
 void testOurs_constru(void);
-void testOurs_setAttaquee(void);
+void testOurs_setAttaque(void);
 void testOurs_deplace(void);
 void testClass_Ours(void);
 
 void testLion_constru(void);
-void testLion_setAttaquee(void);
+void testLion_setAttaque(void);
 void testLion_deplace(void);
 void testClass_Lion(void);
 
@@ -48,7 +48,8 @@ int main(int argc, char const *argv[])
     Game game = Game();
 
     cout << "Run" << endl;
-    while(game.run());
+    while (game.run())
+        ;
     cout << "End Run" << endl;
 
     // Tests
@@ -61,6 +62,11 @@ int main(int argc, char const *argv[])
     return 0;
 }
 
+/**
+ * @brief Test of Lion's constructor,
+ * Test if its alive and the name
+ *
+ */
 void testLion_constru(void)
 {
 
@@ -74,7 +80,13 @@ void testLion_constru(void)
 
     cout << "  - constructeur Lion\t : OK" << endl;
 }
-void testLion_setAttaquee(void)
+
+/**
+ * @brief Test the function setAttaque of Lion
+ * Check if the type of attack that has been set is as attended
+ *
+ */
+void testLion_setAttaque(void)
 {
     Lion lion = Lion(1, 1);
     for (int i = 0; i < 100; i++)
@@ -85,6 +97,11 @@ void testLion_setAttaquee(void)
     }
     cout << "  - setAttaque Lion\t : OK" << endl;
 }
+
+/**
+ * @brief Test the function deplace of Lion
+ * Check that Npos != N-1pos and pos is within the board
+ */
 void testLion_deplace(void)
 {
     Lion lion = Lion(MAX_X, MAX_Y);
@@ -110,18 +127,28 @@ void testLion_deplace(void)
 
     cout << "  - deplace Lion\t : OK" << endl;
 }
+
+/**
+ * @brief Call Lion's test functions
+ *
+ */
 void testClass_Lion(void)
 {
     cout << "** Test de la Class Lion **" << endl;
 
     testLion_constru();
-    testLion_setAttaquee();
+    testLion_setAttaque();
     testLion_deplace();
 
     cout << endl
          << endl;
 }
 
+/**
+ * @brief Test of Ours's constructor,
+ * Test if its alive and the name
+ *
+ */
 void testOurs_constru(void)
 {
 
@@ -135,7 +162,13 @@ void testOurs_constru(void)
 
     cout << "  - constructeur Ours\t : OK" << endl;
 }
-void testOurs_setAttaquee(void)
+
+/**
+ * @brief Test the function setAttaque of Ours
+ * Check if the type of attack that has been set is as attended
+ *
+ */
+void testOurs_setAttaque(void)
 {
     Ours ours = Ours(1, 1);
     for (int i = 0; i < 100; i++)
@@ -146,6 +179,12 @@ void testOurs_setAttaquee(void)
     }
     cout << "  - setAttaque Ours\t : OK" << endl;
 }
+
+/**
+ * @brief Test the function deplace of Ours
+ * Check that Npos != N-1pos and pos is within the board
+ */
+
 void testOurs_deplace(void)
 {
     Ours ours = Ours(MAX_X, MAX_Y);
@@ -171,17 +210,28 @@ void testOurs_deplace(void)
 
     cout << "  - deplace Ours\t : OK" << endl;
 }
+
+/**
+ * @brief Call Ours's test functions
+ *
+ */
 void testClass_Ours(void)
 {
     cout << "** Test de la Class Ours **" << endl;
 
     testOurs_constru();
-    testOurs_setAttaquee();
+    testOurs_setAttaque();
     testOurs_deplace();
 
     cout << endl
          << endl;
 }
+
+/**
+ * @brief Test of Loup's constructor,
+ * Test if its alive and the name
+ *
+ */
 
 void testLoup_constru(void)
 {
@@ -196,7 +246,12 @@ void testLoup_constru(void)
 
     cout << "  - constructeur Loup\t : OK" << endl;
 }
-void testLoup_setAttaquee(void)
+/**
+ * @brief Test the function setAttaque of Loup
+ * Check if the type of attack that has been set is as attended
+ *
+ */
+void testLoup_setAttaque(void)
 {
     Loup loup = Loup(1, 1);
     for (int i = 0; i < 100; i++)
@@ -207,6 +262,12 @@ void testLoup_setAttaquee(void)
     }
     cout << "  - setAttaque Loup\t : OK" << endl;
 }
+
+/**
+ * @brief Test the function deplace of Loup
+ * Check that Npos != N-1pos and pos is within the board
+ */
+
 void testLoup_deplace(void)
 {
     Loup loup = Loup(MAX_X, MAX_Y);
@@ -232,18 +293,28 @@ void testLoup_deplace(void)
 
     cout << "  - deplace Loup\t : OK" << endl;
 }
+
+/**
+ * @brief Call Loup's test functions
+ *
+ */
 void testClass_Loup(void)
 {
     cout << "** Test de la Class Loup **" << endl;
 
     testLoup_constru();
-    testLoup_setAttaquee();
+    testLoup_setAttaque();
     testLoup_deplace();
 
     cout << endl
          << endl;
 }
 
+/**
+ * @brief Test of Pierre's constructor,
+ * Test if its alive and the name
+ *
+ */
 void testPierre_constru(void)
 {
 
@@ -257,7 +328,13 @@ void testPierre_constru(void)
 
     cout << "  - constructeur Pierre\t : OK" << endl;
 }
-void testPierre_setAttaquee(void)
+
+/**
+ * @brief Test the function setAttaque of Pierre
+ * Check if the type of attack that has been set is as attended
+ *
+ */
+void testPierre_setAttaque(void)
 {
     Pierre pierre = Pierre(1, 1);
     for (int i = 0; i < 100; i++)
@@ -268,6 +345,11 @@ void testPierre_setAttaquee(void)
     }
     cout << "  - setAttaque Pierre\t : OK" << endl;
 }
+
+/**
+ * @brief Test the function deplace of Pierre
+ * Check that Npos != N-1pos and pos is within the board
+ */
 void testPierre_deplace(void)
 {
     Pierre pierre = Pierre(MAX_X, MAX_Y);
@@ -293,18 +375,27 @@ void testPierre_deplace(void)
 
     cout << "  - deplace Pierre\t : OK" << endl;
 }
+
+/**
+ * @brief Call Pierre's test functions
+ *
+ */
 void testClass_Pierre(void)
 {
     cout << "** Test de la Class Pierre **" << endl;
 
     testPierre_constru();
-    testPierre_setAttaquee();
+    testPierre_setAttaque();
     testPierre_deplace();
 
     cout << endl
          << endl;
 }
 
+/**
+ * @brief Check the attack function of animals
+ * Check if when A win against B that B loose against A
+ */
 void testAnimal_attaque(void)
 {
 
@@ -320,6 +411,10 @@ void testAnimal_attaque(void)
     cout << "  - attaque Animal\t : OK" << endl;
 }
 
+/**
+ * @brief Test the setVivant function of Animal
+ * Check the state can only be 0 or 1
+ */
 void testAnimal_setVivant(void)
 {
     Lion lion_1 = Lion(MAX_X, MAX_Y);
@@ -350,6 +445,10 @@ void testAnimal_setVivant(void)
     cout << "  - setVivant Animal\t : OK" << endl;
 }
 
+/**
+ * @brief Call Animal's test functions
+ *
+ */
 void testClass_Animal()
 {
     cout << "** Test de la Class Animal **" << endl;
@@ -361,6 +460,11 @@ void testClass_Animal()
          << endl;
 }
 
+/**
+ * @brief Test the constructor of Attaque
+ * Check the names and types after being constructed
+ *
+ */
 void testAttaque_constru(void)
 {
     Attaque attaque_1 = Attaque();
@@ -368,13 +472,13 @@ void testAttaque_constru(void)
     Attaque attaque_3 = Attaque(AttackType::CISOR);
     Attaque attaque_4 = Attaque(AttackType::PAPER);
 
-    // Vérifie le type de l'attaque
+    // Check attack types
     assert(attaque_1.getTypeAttaque() == AttackType::ROCK || attaque_1.getTypeAttaque() == AttackType::CISOR || attaque_1.getTypeAttaque() == AttackType::PAPER);
     assert(attaque_2.getTypeAttaque() == AttackType::ROCK);
     assert(attaque_3.getTypeAttaque() == AttackType::CISOR);
     assert(attaque_4.getTypeAttaque() == AttackType::PAPER);
 
-    // Vérifie le nom de l'attaque
+    // Check attack names
     assert(attaque_1.getNomAttaque() == "Rock" || attaque_1.getNomAttaque() == "Cisor" || attaque_1.getNomAttaque() == "Paper");
     assert(attaque_2.getNomAttaque() == "Rock");
     assert(attaque_3.getNomAttaque() == "Cisor");
@@ -383,6 +487,10 @@ void testAttaque_constru(void)
     cout << "  - constructeur Attaque\t : OK" << endl;
 }
 
+/**
+ * @brief Test the function resoudreAttaque of Attaque
+ * Check each combination of resoudreAttaque
+ */
 void testAttaque_resoudreAttaque(void)
 {
     Attaque cisor = Attaque(AttackType::CISOR);
@@ -405,6 +513,10 @@ void testAttaque_resoudreAttaque(void)
     cout << "  - resoudreAttaque Attaque\t : OK" << endl;
 }
 
+/**
+ * @brief Call Attaque's test functions
+ *
+ */
 void testClass_Attaque(void)
 {
     cout << "** Test de la Class Attaque **" << endl;

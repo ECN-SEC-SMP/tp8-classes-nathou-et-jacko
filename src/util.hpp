@@ -16,8 +16,20 @@
 // ================================================================================
 // Function declaration
 // ================================================================================
+
+/**
+ * @brief Initialize the seed
+ *
+ */
 void initRand(void);
 
+/**
+ * @brief Gives a random value between the given intervale
+ *
+ * @param min minimum value
+ * @param max maximum value
+ * @return int8_t
+ */
 int8_t getRand(int8_t min, int8_t max);
 
 #endif // UTIL_H_
