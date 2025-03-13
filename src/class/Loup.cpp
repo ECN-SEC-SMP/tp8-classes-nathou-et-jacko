@@ -14,8 +14,19 @@ Loup::Loup(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
 
 void Loup::deplace(int maxX, int maxY)
 {
-    this->x = getRand(0, maxX - 1);
-    this->y = getRand(0, maxY - 1);
+    int prevX = this->getX();
+    int prevY = this->getY();
+    do
+    {
+        this->x = getRand(0, maxX - 1);
+
+    } while (prevX == this->x);
+
+    do
+    {
+        this->y = getRand(0, maxY - 1);
+
+    } while (prevY == this->y);
 }
 
 void Loup::setAttaque()

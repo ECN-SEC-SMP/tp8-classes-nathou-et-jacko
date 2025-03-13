@@ -1,5 +1,6 @@
 #include "Ours.hpp"
-
+#include <iostream>
+using namespace std;
 Ours::Ours(int maxX, int maxY) : Animal(maxX, maxY)
 {
     this->name = NAME_OURS;
@@ -17,9 +18,9 @@ void Ours::deplace(int maxX, int maxY)
     bool xMove_2 = (bool)(getRand(0, 1));  // 1 -> move by 2
     bool directionX = (bool)getRand(0, 1); // 1 -> move forward
     bool directionY = (bool)getRand(0, 1); // 1 -> move forward
-
-    int newX = this->x + directionX ? (xMove_2 ? 2 : 1) : (xMove_2 ? -2 : -1);
-    int newY = this->y + directionY ? (xMove_2 ? 1 : 2) : (xMove_2 ? -1 : -2);
+   
+    int newX = this->x + (directionX ? (xMove_2 == 1 ? 2 : 1) : (xMove_2 == 1 ? -2 : -1));
+    int newY = this->y + (directionY ? (xMove_2 == 1 ? 1 : 2) : (xMove_2 == 1 ? -1 : -2));
 
     // Check position of X
     if (newX >= maxX)
@@ -40,6 +41,8 @@ void Ours::deplace(int maxX, int maxY)
     {
         newY = newY + maxY;
     }
+    this->x = newX;
+    this->y = newY;
 }
 
 void Ours::setAttaque()
