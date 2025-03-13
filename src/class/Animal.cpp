@@ -1,9 +1,8 @@
 #include "Animal.hpp"
 
-
 Animal::Animal(int maxX, int maxY) {
-    this->x = 0;
-    this->y = 0;
+    this->x = getRand(0, maxX - 1);
+    this->y = getRand(0, maxY - 1);
 
 }
 
@@ -17,11 +16,11 @@ string Animal::getName() const {
     return this->name;
 }
 
-int Animal::getX() const {
+int Animal::getX(void) const {
     return this->x;
 }
 
-int Animal::getY() const {
+int Animal::getY(void) const {
     return this->y;
 }
 

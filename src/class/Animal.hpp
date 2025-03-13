@@ -50,14 +50,14 @@ public:
      *
      * @return int
      */
-    int getX() const;
+    int getX(void) const;
 
     /**
      * @brief Get Y property
      *
      * @return int
      */
-    int getY() const;
+    int getY(void) const;
 
     /**
      * @brief Get the Vivant object

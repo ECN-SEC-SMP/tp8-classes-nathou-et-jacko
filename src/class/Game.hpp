@@ -12,8 +12,9 @@ using namespace std;
 // ================================================================================
 // Define
 // ================================================================================
-#define maxX 10
-#define maxY 10
+#define MAX_X 10
+#define MAX_Y 10
+#define NB_CASES MAX_X * MAX_Y
 
 // ================================================================================
 // Types (Struct, enum, ...)
@@ -26,7 +27,10 @@ class Game
 {
 
 private:
-    vector<vector<Animal *>> board;
+    // Y, X, vector of animals on the case
+    vector<vector<vector<Animal *>>> board;
+
+    void resetGame(void);
 
 public:
     /**
