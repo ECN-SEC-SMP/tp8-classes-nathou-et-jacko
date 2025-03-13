@@ -15,12 +15,15 @@
 // ================================================================================
 // Define
 // ================================================================================
-#define DISTRIB_PLATEAU 25 // Pourcent, le plateau est de 10x10 donc 100 cases donc 25 = 25% de 100
+// 24 because we have 4 species and 25 isn't a multiple of 4
+#define DISTRIB_PLATEAU 24 // Pourcent, le plateau est de 10x10 donc 100 cases donc 24 = 24% de 100
 
 #define LION_INDEX      0
 #define LOUP_INDEX      1
 #define OURS_INDEX      2
 #define PIERRE_INDEX    3
+#define NB_SPECIES  4
+#define NB_INDIVIDUAL_BY_SPECIES DISTRIB_PLATEAU / NB_SPECIES
 
 // ================================================================================
 // Types (Struct, enum, ...)
@@ -37,6 +40,7 @@ const std::map<std::string, std::string> g_Animal_IconFromName = {
 // Prototype
 // ================================================================================
 Animal* createRandAnimal(void);
+Animal* createAnimal(uint8_t animalIndex);
 
 // ================================================================================
 // Class def
@@ -50,6 +54,10 @@ Game::Game() {
     this->board = vector<vector<vector<Animal *>>>(MAX_Y, vector<vector<Animal *>>(MAX_X, vector<Animal*>(0)));
     this->resetGame();
 };
+
+bool run(void) {
+
+}
 
 /**
  * @brief Check if the Game is empty
@@ -96,12 +104,14 @@ void Game::resetGame(void) {
     int animX;
     int animY;
 
+    cout << "Reset Game" << endl;
+
     for (uint32_t i = 0; i < nb_animals; i++) {
-        temp = createRandAnimal();
+        temp = createAnimal(i%NB_SPECIES);  // Create equal population size
         animX = temp->getX();
         animY = temp->getY();
         this->board.at(animY).at(animX).push_back(temp);
-        cout << "[resetGame] add " << " to x : " << animX << " y : " << animY << endl;
+        cout << "[resetGame] add " << temp->getName() << " to x : " << animX << " y : " << animY << endl;
     }
     
 }
@@ -112,7 +122,7 @@ void Game::resetGame(void) {
  */
 void Game::printBoardGame()
 {
-
+    cout << "print board game" << endl;
     for (int i = 0; i < MAX_Y; i++)
     {
         cout << "|----";
@@ -146,19 +156,16 @@ void Game::printBoardGame()
 // ================================================================================
 
 /**
- * @brief Create a Rand Animal object with equi probability
+ * @brief Create a Animal object depending on animalIndex
  * 
+ * @param animalIndex 
  * @return Animal* 
  */
-Animal* createRandAnimal(void) {
+Animal* createAnimal(uint8_t animalIndex) {
     Animal* temp = nullptr;
 
-    uint8_t rand;
-    rand = getRand(LION_INDEX, PIERRE_INDEX); // Lion and Pierre beacause they are the first and last define
-
-    switch (rand)
-    {
-    case LION_INDEX:
+    switch (animalIndex) {
+        case LION_INDEX:
         temp = new Lion(MAX_X, MAX_Y);
         break;
         
@@ -177,6 +184,22 @@ Animal* createRandAnimal(void) {
     default:
         break;
     }
+
+    return temp;
+}
+
+/**
+ * @brief Create a Rand Animal object with equi probability
+ * 
+ * @return Animal* 
+ */
+Animal* createRandAnimal(void) {
+    Animal* temp = nullptr;
+
+    uint8_t rand;
+    rand = getRand(LION_INDEX, PIERRE_INDEX); // Lion and Pierre beacause they are the first and last define
+
+    temp = createAnimal(rand);
 
     return temp;
 }

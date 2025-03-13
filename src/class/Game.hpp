@@ -45,6 +45,14 @@ public:
     ~Game();
 
     /**
+     * @brief Run each iteration of the game, return false at the end
+     * 
+     * @return true 
+     * @return false 
+     */
+    bool run(void);
+
+    /**
      * @brief Check if the Game is empty
      *
      * @return true
