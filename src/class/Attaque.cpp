@@ -23,19 +23,47 @@ AttackType getRandAttack(void);
 // Class def
 // ================================================================================
 
+/**
+ * @brief Construct a new Attaque object
+ *
+ */
+
 Attaque::Attaque(void) : attack{getRandAttack()} {}
 
+/**
+ * @brief Construct a new Attaque object
+ *
+ * @param attack
+ */
 Attaque::Attaque(AttackType attack) : attack{attack} {}
 
-Attaque::~Attaque() {
-
+/**
+ * @brief Destroy the Attaque object
+ *
+ */
+Attaque::~Attaque()
+{
 }
 
-AttackType Attaque::getTypeAttaque() const {
+/**
+ * @brief Get the Type Attaque object
+ *
+ * @return AttackType
+ */
+AttackType Attaque::getTypeAttaque() const
+{
     return this->attack;
 }
 
-bool Attaque::resoudreAttaque(Attaque &a) const {
+/**
+ * @brief Returns true if the attack is better than the parameter
+ *
+ * @param a An attack
+ * @return true
+ * @return false
+ */
+bool Attaque::resoudreAttaque(Attaque &a) const
+{
     // Rock > Cisor
     // Paper > Rock
     // Cisor > Paper
@@ -47,7 +75,8 @@ bool Attaque::resoudreAttaque(Attaque &a) const {
     return false;
 }
 
-std::string Attaque::getNomAttaque() const {
+std::string Attaque::getNomAttaque() const
+{
     return g_attackTypes_toString.at(this->attack);
 }
 
@@ -56,10 +85,11 @@ std::string Attaque::getNomAttaque() const {
 // ================================================================================
 /**
  * @brief Get the Rand Attack object
- * 
- * @return AttackType 
+ *
+ * @return AttackType
  */
-AttackType getRandAttack(void) {
+AttackType getRandAttack(void)
+{
     // Attack enum correspond to integer form 0 to 2
     return (AttackType)getRand((int8_t)AttackType::ROCK, (int8_t)AttackType::CISOR);
 }

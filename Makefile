@@ -24,8 +24,7 @@ compilAttack : compilUtil
 	$(GPP) -c $(SRC_CLASS)/Attaque.cpp -o $(BIN)/Attaque.o
 
 # La cible "compilAnimals" est exécutée en tapant la commande "make compilAnimals"
-compilAnimals : $(BIN)/Animal.o $(BIN)/Lion.o $(BIN)/Ours.o $(BIN)/Pierre.o $(BIN)/Loup.o
-# compilAnimals :
+compilAnimals : compilAttack
 
 $(BIN)/Animal.o : $(SRC_CLASS)/Animal.cpp
 	@echo "Compilation Animal.cpp"
@@ -48,12 +47,12 @@ $(BIN)/Loup.o : $(SRC_CLASS)/Loup.cpp
 	$(GPP) -c $< -o $@
 
 # La cible "compilGame" est exécutée en tapant la commande "make compilGame"
-compilGame : compilAttack
+compilGame : compilAnimals
 	@echo "Compilation Game"
 	$(GPP) -c $(SRC_CLASS)/Game.cpp -o $(BIN)/Game.o
 
 # La cible "compilMain" est exécutée en tapant la commande "make compilMain"
-compilMain : deleteAll compilAnimals compilGame
+compilMain : deleteAll compilGame
 	@echo "Compilation de main"
 	$(GPP) $(SRC)/main.cpp $(BIN)/*.o -o $(BIN)/main.bin
 

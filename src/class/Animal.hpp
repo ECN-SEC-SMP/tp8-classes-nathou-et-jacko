@@ -6,6 +6,7 @@
 #include <string>
 #include <stdexcept>
 #include "Attaque.hpp"
+#include "../util.hpp"
 using namespace std;
 
 // ================================================================================
@@ -31,11 +32,19 @@ public:
     /**
      * @brief Construct a new Animal object
      *
-     * @param maxX
-     * @param maxY
+     * @param maxX Max x length of the board
+     * @param maxY Max y length of the board
      */
     Animal(int maxX, int maxY);
 
+    /**
+     * @brief Construct a new Animal object
+     *
+     * @param maxX Max x length of the board
+     * @param maxY Max y length of the board
+     * @param a position X of the animal
+     * @param b position Y of the animal
+     */
     Animal(int maxX, int maxY, int a, int b);
 
     /**
@@ -94,7 +103,7 @@ public:
      * @brief Define the Attaque function for children
      * 
      */
-    virtual void setAttaque();
+    virtual void setAttaque() = 0;
 
     /**
      * @brief Define the Deplace function for children
@@ -102,7 +111,7 @@ public:
      * @param maxX 
      * @param maxY 
      */
-    virtual void deplace(int maxX, int maxY);
+    virtual void deplace(int maxX, int maxY) = 0;
 };
 
 #endif
