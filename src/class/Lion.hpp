@@ -6,12 +6,13 @@
 class Lion : public Animal
 {
 
-    private:
+private:
+public:
+    Lion(int maxX, int maxY);
+    Lion(int maxX, int maxY, int a, int b);
+    void setAttaque();
 
-    public:
-        void setAttaque();
-
-        void deplace(int maxX, int maxY);
+    void deplace(int maxX, int maxY);
 };
 
 #endif;
