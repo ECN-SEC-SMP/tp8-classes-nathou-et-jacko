@@ -4,6 +4,7 @@
 #include "Game.hpp"
 
 #include <string>
+#include <algorithm>
 
 #include "Animal.hpp"
 #include "Lion.hpp"
@@ -60,7 +61,7 @@ Game::Game()
 };
 
 Game::~Game() {
-    
+
 }
 
 bool Game::run(void) {
@@ -77,6 +78,7 @@ bool Game::run(void) {
     this->printBoardGame();
     
     // Check if player want to continue
+    cout << "Press Enter to continue, q to exit" << endl;
     int c_raw;
     do {
         c_raw = (char)getchar();
@@ -153,7 +155,7 @@ void Game::printBoardGame()
 {
     cout << ESPACE_CODE_CURSOR_RESET;
     cout << ESCAPE_CODE_ERASE;
-    cout << "print board game" << endl;
+    cout << "Animals on board : " << this->countAnimals() << endl;
     for (int i = 0; i < MAX_Y; i++)
     {
         cout << "|----";
@@ -256,6 +258,18 @@ map<string, int> Game::resolveConflict()
         }
     }
     return killcam;
+}
+
+uint32_t Game::countAnimals(void) {
+    uint32_t count = 0;
+
+    for (uint32_t y = 0; y < MAX_X; y++) {
+        for (uint32_t x = 0; x < MAX_Y; x++) {
+            count += this->board.at(y).at(x).size();
+        }
+    }
+    
+    return count;
 }
 
 // ================================================================================

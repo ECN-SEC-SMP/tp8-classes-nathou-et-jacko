@@ -45,6 +45,13 @@ private:
      */
     int fight(vector<Animal *> fighters, int fighterOne, int fighterTwo);
 
+    /**
+     * @brief Count the member of animal on the board
+     * 
+     * @return uint32_t 
+     */
+    uint32_t countAnimals(void);
+
 public:
     /**
      * @brief Construct a new Game object
