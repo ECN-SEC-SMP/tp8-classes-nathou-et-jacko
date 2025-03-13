@@ -2,10 +2,14 @@
 
 Ours::Ours(int maxX, int maxY) : Animal(maxX, maxY)
 {
+    this->name = "Ours";
+    this->living = 1;
 }
 
 Ours::Ours(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
 {
+    this->name = "Ours";
+    this->living = 1;
 }
 
 void Ours::deplace(int maxX, int maxY)

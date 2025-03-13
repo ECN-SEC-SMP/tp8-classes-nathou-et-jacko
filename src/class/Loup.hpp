@@ -8,11 +8,11 @@ class Loup : public Animal
 
 private:
 public:
-    Loup(int maxX, int maxY);
-    Loup(int maxX, int maxY, int a, int b);
+    Loup(int x, int y);
+    Loup(int x, int y, int a, int b);
     void setAttaque();
 
-    void deplace(int maxX, int maxY);
+    void deplace(int x, int y);
 };
 
-#endif;
+#endif

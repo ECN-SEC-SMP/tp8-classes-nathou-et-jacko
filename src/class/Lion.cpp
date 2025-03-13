@@ -2,10 +2,14 @@
 
 Lion::Lion(int maxX, int maxY) : Animal(maxX, maxY)
 {
+    this->name = "Lion";
+    this->living = 1;
 }
 
 Lion::Lion(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
 {
+    this->name = "Lion";
+    this->living = 1;
 }
 
 void Lion::deplace(int maxX, int maxY)

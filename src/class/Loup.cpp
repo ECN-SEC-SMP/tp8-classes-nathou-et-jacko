@@ -2,10 +2,14 @@
 
 Loup::Loup(int maxX, int maxY) : Animal(maxX, maxY)
 {
+    this->name = "Loup";
+    this->living = 1;
 }
 
 Loup::Loup(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
 {
+    this->name = "Loup";
+    this->living = 1;
 }
 
 void Loup::deplace(int maxX, int maxY)

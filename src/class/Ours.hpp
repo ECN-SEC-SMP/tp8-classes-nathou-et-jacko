@@ -8,11 +8,11 @@ class Ours : public Animal
 
 private:
 public:
-    Ours(int maxX, int maxY);
-    Ours(int maxX, int maxY, int a, int b);
+    Ours(int x, int y);
+    Ours(int x, int y, int a, int b);
     void setAttaque();
 
-    void deplace(int maxX, int maxY);
+    void deplace(int x, int y);
 };
 
-#endif;
+#endif

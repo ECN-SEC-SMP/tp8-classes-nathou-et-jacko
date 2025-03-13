@@ -1,12 +1,17 @@
 #include "Pierre.hpp"
 
-Pierre::Pierre(int maxX, int maxY) : Animal(maxX, maxY)
+Pierre::Pierre(int x, int y) : Animal(x, y)
 {
+    this->name = "Pierre";
+    this->living = 0;
 }
 
-Pierre::Pierre(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
+Pierre::Pierre(int x, int y, int a, int b) : Animal(x, y, a, b)
 {
+    this->name = "Pierre";
+    this->living = 0;
 }
+
 
 void Pierre::deplace(int maxX, int maxY)
 {
@@ -14,6 +19,7 @@ void Pierre::deplace(int maxX, int maxY)
     this->y = this->y;
 }
 
-void Pierre::setAttaque() {
+void Pierre::setAttaque()
+{
     this->typeAttaque = AttackType::ROCK;
 }
