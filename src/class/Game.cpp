@@ -110,7 +110,7 @@ void Game::deplaceAll(void) {
             tile = &this->board.at(y).at(x);
             // For each anima on this tile
             for (uint32_t i = 0; i < tile->size(); i++) {
-                if (tile->at(i)->getX() == x && tile->at(i)->getY() == y) {
+                if (((uint32_t)tile->at(i)->getX()) == x && ((uint32_t)tile->at(i)->getY()) == y) {
                     // If animal already at correct postion, we pass him
                     continue;
                 }
@@ -191,7 +191,7 @@ void Game::printBoardGame()
 
 int Game::fight(vector<Animal *> fighters, int fighterOne, int fighterTwo)
 {
-    if (fighterOne < 0 || fighterTwo < 0 || fighterOne >= fighters.size() || fighterTwo >= fighters.size())
+    if (fighterOne < 0 || fighterTwo < 0 || fighterOne >= (int)fighters.size() || fighterTwo >= (int)fighters.size())
     {
         throw invalid_argument("Incorrect parameters");
     }

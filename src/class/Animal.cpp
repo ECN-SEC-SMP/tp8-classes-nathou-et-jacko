@@ -24,6 +24,7 @@ Animal::Animal(int maxX, int maxY, int a, int b)
     this->x = a;
     this->y = b;
 }
+
 Animal::~Animal() {
     
 }

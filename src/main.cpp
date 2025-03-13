@@ -334,7 +334,7 @@ void testAnimal_setVivant(void)
     {
         lion_1.setVivant(-1);
     }
-    catch (std::exception e)
+    catch (std::exception &e)
     {
         cerr << e.what();
     }
@@ -342,7 +342,7 @@ void testAnimal_setVivant(void)
     {
         lion_1.setVivant(2);
     }
-    catch (std::exception e)
+    catch (std::exception &e)
     {
         cerr << e.what();
     }

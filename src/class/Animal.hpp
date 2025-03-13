@@ -51,7 +51,8 @@ public:
      * @brief Destroy the Animal object
      * 
      */
-    ~Animal();
+    virtual ~Animal();
+    // ~Animal();
 
     /**
      * @brief Get the Name object

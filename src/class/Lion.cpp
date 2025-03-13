@@ -18,8 +18,8 @@ Lion::~Lion() {
 
 void Lion::deplace(int maxX, int maxY)
 {
-    int newX = this->getX() + (bool)(getRand(0, 1) ? 1 : -1);
-    int newY = this->getY() + (bool)(getRand(0, 1) ? 1 : -1);
+    int newX = this->getX() + ((bool)(getRand(0, 1)) ? 1 : -1);
+    int newY = this->getY() + ((bool)(getRand(0, 1)) ? 1 : -1);
 
     // Check position of X
     if (newX == maxX)
