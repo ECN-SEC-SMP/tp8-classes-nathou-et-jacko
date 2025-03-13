@@ -12,6 +12,7 @@ private:
 public:
     Ours(int x, int y);
     Ours(int x, int y, int a, int b);
+    ~Ours();
     void setAttaque();
 
     void deplace(int x, int y);

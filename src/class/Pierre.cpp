@@ -12,6 +12,9 @@ Pierre::Pierre(int x, int y, int a, int b) : Animal(x, y, a, b)
     this->living = 0;
 }
 
+Pierre::~Pierre() {
+    
+}
 
 void Pierre::deplace(int maxX, int maxY)
 {

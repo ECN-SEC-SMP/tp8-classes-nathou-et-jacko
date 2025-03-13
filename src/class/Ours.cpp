@@ -13,6 +13,10 @@ Ours::Ours(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
     this->living = 1;
 }
 
+Ours::~Ours() {
+    
+}
+
 void Ours::deplace(int maxX, int maxY)
 {
     bool xMove_2 = (bool)(getRand(0, 1));  // 1 -> move by 2

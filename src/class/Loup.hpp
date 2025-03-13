@@ -12,6 +12,8 @@ private:
 public:
     Loup(int x, int y);
     Loup(int x, int y, int a, int b);
+    ~Loup();
+    
     void setAttaque();
 
     void deplace(int x, int y);

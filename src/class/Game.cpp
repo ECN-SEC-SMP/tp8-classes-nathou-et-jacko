@@ -59,6 +59,10 @@ Game::Game()
     this->resetGame();
 };
 
+Game::~Game() {
+    
+}
+
 bool Game::run(void) {
 
     bool continue_run = true;
@@ -67,6 +71,7 @@ bool Game::run(void) {
     this->deplaceAll();
 
     // Combat
+    this->resolveConflict();
 
     // Print Board
     this->printBoardGame();
@@ -113,30 +118,6 @@ void Game::deplaceAll(void) {
 
                 this->board.at(toMove->getY()).at(toMove->getX()).push_back(toMove);
                 i--;
-            }
-        }
-    }
-}
-
-/**
- * @brief Check if the Game is empty
- *
- * @return true
- * @return false
- */
-bool Game::isEmpty()
-{
-    Animal *anim_temp;
-
-    for (vector<vector<Animal *>> vect : this->board)
-    {
-        for (vector<Animal *> animalVect : vect)
-        {
-            while (animalVect.size() > 0)
-            {
-                anim_temp = animalVect.back(); // Get element
-                animalVect.pop_back();         // Remove from vector
-                delete anim_temp;              // Delete memory
             }
         }
     }

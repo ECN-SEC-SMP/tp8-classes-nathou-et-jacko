@@ -12,6 +12,10 @@ Loup::Loup(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
     this->living = 1;
 }
 
+Loup::~Loup() {
+    
+}
+
 void Loup::deplace(int maxX, int maxY)
 {
     int prevX = this->getX();

@@ -48,6 +48,12 @@ public:
     Animal(int maxX, int maxY, int a, int b);
 
     /**
+     * @brief Destroy the Animal object
+     * 
+     */
+    ~Animal();
+
+    /**
      * @brief Get the Name object
      *
      * @return string

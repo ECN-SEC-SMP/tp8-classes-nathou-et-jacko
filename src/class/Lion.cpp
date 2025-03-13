@@ -12,6 +12,10 @@ Lion::Lion(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
     this->living = 1;
 }
 
+Lion::~Lion() {
+    
+}
+
 void Lion::deplace(int maxX, int maxY)
 {
     int newX = this->getX() + (bool)(getRand(0, 1) ? 1 : -1);

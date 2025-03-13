@@ -13,6 +13,7 @@ class Pierre : public Animal
     public:
         Pierre(int x, int y);
         Pierre(int x, int y, int a, int b);
+        ~Pierre();
         void setAttaque();
 
         void deplace(int x, int y);
