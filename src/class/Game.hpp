@@ -32,6 +32,8 @@ private:
 
     void resetGame(void);
 
+    void deplaceAll(void);
+
 public:
     /**
      * @brief Construct a new Game object

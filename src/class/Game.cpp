@@ -25,6 +25,11 @@
 #define NB_SPECIES  4
 #define NB_INDIVIDUAL_BY_SPECIES DISTRIB_PLATEAU / NB_SPECIES
 
+// ESC = \x1B, erase screen = ESC[2J
+#define ESCAPE_CODE_ERASE "\x1B[0J"
+// ESC[H
+#define ESPACE_CODE_CURSOR_RESET "\x1B[H"
+
 // ================================================================================
 // Types (Struct, enum, ...)
 // ================================================================================
@@ -55,8 +60,63 @@ Game::Game() {
     this->resetGame();
 };
 
-bool run(void) {
+bool Game::run(void) {
 
+    bool continue_run = true;
+
+    // Deplace
+    this->deplaceAll();
+
+    // Combat
+
+    // Print Board
+    this->printBoardGame();
+    
+    // Check if player want to continue
+    int c_raw;
+    do {
+        c_raw = (char)getchar();
+        if (c_raw == 'q') {
+            continue_run = false;
+        }
+    } while (c_raw != '\n' && c_raw != EOF);
+    
+    return continue_run;
+}
+
+void Game::deplaceAll(void) {
+    vector<Animal*>* tile;
+    Animal* toMove;
+
+    // Deplace in board
+    for (uint32_t y = 0; y < MAX_Y; y++) {
+        for (uint32_t x = 0; x < MAX_X; x++) {
+            tile = &this->board.at(y).at(x);
+            for (uint32_t i = 0; i < tile->size(); i++) {
+                tile->at(i)->deplace(MAX_X, MAX_Y);
+            }
+        }
+    }
+
+    // Change position of each animal
+    for (uint32_t y = 0; y < MAX_Y; y++) {
+        for (uint32_t x = 0; x < MAX_X; x++) {
+            tile = &this->board.at(y).at(x);
+            // For each anima on this tile
+            for (uint32_t i = 0; i < tile->size(); i++) {
+                if (tile->at(i)->getX() == x && tile->at(i)->getY() == y) {
+                    // If animal already at correct postion, we pass him
+                    continue;
+                }
+
+                toMove = tile->at(i);
+                tile->erase(tile->begin() + i);   // Erase animal from his old tile
+
+                this->board.at(toMove->getY()).at(toMove->getX()).push_back(toMove);
+                i--;
+            }
+        }
+    }
 }
 
 /**
@@ -122,6 +182,8 @@ void Game::resetGame(void) {
  */
 void Game::printBoardGame()
 {
+    cout << ESPACE_CODE_CURSOR_RESET;
+    cout << ESCAPE_CODE_ERASE;
     cout << "print board game" << endl;
     for (int i = 0; i < MAX_Y; i++)
     {

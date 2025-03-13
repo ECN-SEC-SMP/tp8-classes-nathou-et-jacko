@@ -45,17 +45,19 @@ int main(int argc, char const *argv[])
 
     initRand();
 
-    // Game game = Game();
+    Game game = Game();
 
-    // game.printBoardGame();
+    cout << "Run" << endl;
+    while(game.run());
+    cout << "End Run" << endl;
 
     // Tests
-    testClass_Lion();
-    testClass_Ours();
-    testClass_Loup();
-    testClass_Pierre();
-    testClass_Animal();
-    testClass_Attaque();
+    // testClass_Lion();
+    // testClass_Ours();
+    // testClass_Loup();
+    // testClass_Pierre();
+    // testClass_Animal();
+    // testClass_Attaque();
     return 0;
 }
 
