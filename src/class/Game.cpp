@@ -77,7 +77,7 @@ void Game::resetGame(void) {
     int animY;
 
     for (uint32_t i = 0; i < nb_animals; i++) {
-        temp = new Animal(MAX_X, MAX_Y);
+        // temp = new Animal(MAX_X, MAX_Y);
         animX = temp->getX();
         animY = temp->getY();
         this->board.at(animY).at(animX).push_back(temp);

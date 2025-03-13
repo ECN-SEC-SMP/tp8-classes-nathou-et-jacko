@@ -78,7 +78,7 @@ void Animal::setVivant(bool y)
     {
         throw invalid_argument("Y doit valoir 0 ou 1.");
     }
-    this->y = y;
+    this->living = y;
 }
 
 /**
