@@ -2,13 +2,13 @@
 
 Pierre::Pierre(int x, int y) : Animal(x, y)
 {
-    this->name = "Pierre";
+    this->name = NAME_PIERRE;
     this->living = 0;
 }
 
 Pierre::Pierre(int x, int y, int a, int b) : Animal(x, y, a, b)
 {
-    this->name = "Pierre";
+    this->name = NAME_PIERRE;
     this->living = 0;
 }
 

@@ -2,13 +2,13 @@
 
 Ours::Ours(int maxX, int maxY) : Animal(maxX, maxY)
 {
-    this->name = "Ours";
+    this->name = NAME_OURS;
     this->living = 1;
 }
 
 Ours::Ours(int maxX, int maxY, int a, int b) : Animal(maxX, maxY, a, b)
 {
-    this->name = "Ours";
+    this->name = NAME_OURS;
     this->living = 1;
 }
 

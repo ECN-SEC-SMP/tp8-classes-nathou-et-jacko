@@ -23,31 +23,31 @@ compilAttack : compilUtil
 	@echo "Compilation Attack"
 	$(GPP) -c $(SRC_CLASS)/Attaque.cpp -o $(BIN)/Attaque.o
 
+# La cible "compilAnimals" est exécutée en tapant la commande "make compilAnimals"
+compilAnimals : compilAttack $(BIN)/Animal.o $(BIN)/Loup.o $(BIN)/Lion.o $(BIN)/Ours.o $(BIN)/Pierre.o
 
-# La cible "compilAttack" est exécutée en tapant la commande "make compilAttack"
-compilAnimal : compilAttack
-	@echo "Compilation Attack"
-	$(GPP) -c $(SRC_CLASS)/Animal.cpp $(BIN)/Attaque.o -o $(BIN)/Animal.o
+$(BIN)/Animal.o : $(SRC_CLASS)/Animal.cpp
+	@echo "Compilation Animal.cpp"
+	$(GPP) -c $< -o $@
 
-# La cible "compilAttack" est exécutée en tapant la commande "make compilAttack"
-compilLion: compilAnimal
-	@echo "Compilation Attack"
-	$(GPP) -c $(SRC_CLASS)/Lion.cpp $(BIN)/Animal.o -o $(BIN)/Lion.o
+$(BIN)/Lion.o : $(SRC_CLASS)/Lion.cpp
+	@echo "Compilation Lion.cpp"
+	$(GPP) -c $< -o $@
 
-compilPierre: compilAnimal
-	@echo "Compilation Attack"
-	$(GPP) -c $(SRC_CLASS)/Pierre.cpp $(BIN)/Animal.o -o $(BIN)/Pierre.o
+$(BIN)/Ours.o : $(SRC_CLASS)/Ours.cpp
+	@echo "Compilation Ours.cpp"
+	$(GPP) -c $< -o $@
 
-compilLoup: compilAnimal
-	@echo "Compilation Attack"
-	$(GPP) -c $(SRC_CLASS)/Loup.cpp $(BIN)/Animal.o -o $(BIN)/Loup.o
+$(BIN)/Pierre.o : $(SRC_CLASS)/Pierre.cpp
+	@echo "Compilation Pierre.cpp"
+	$(GPP) -c $< -o $@
 
-compilOurs: compilAnimal
-	@echo "Compilation Attack"
-	$(GPP) -c $(SRC_CLASS)/Ours.cpp $(BIN)/Animal.o -o $(BIN)/Ours.o
+$(BIN)/Loup.o : $(SRC_CLASS)/Loup.cpp
+	@echo "Compilation Loup.cpp"
+	$(GPP) -c $< -o $@
 
 # La cible "compilGame" est exécutée en tapant la commande "make compilGame"
-compilGame : compilAnimal compilLion compilLoup compilPierre compilOurs
+compilGame : compilAnimals
 	@echo "Compilation Game"
 	$(GPP) -c $(SRC_CLASS)/Game.cpp -o $(BIN)/Game.o
 

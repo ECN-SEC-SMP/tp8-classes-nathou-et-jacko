@@ -3,6 +3,8 @@
 
 #include "Animal.hpp"
 
+#define NAME_PIERRE "Pierre"
+
 class Pierre : public Animal
 {
 

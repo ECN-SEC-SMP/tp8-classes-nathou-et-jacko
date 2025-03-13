@@ -3,6 +3,8 @@
 
 #include "Animal.hpp"
 
+#define NAME_OURS "Ours"
+
 class Ours : public Animal
 {
 
