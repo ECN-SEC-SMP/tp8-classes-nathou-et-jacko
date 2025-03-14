@@ -34,11 +34,17 @@
 // Types (Struct, enum, ...)
 // ================================================================================
 
-const std::map<std::string, std::string> g_Animal_IconFromName = {
+const map<string, string> g_Animal_IconFromName = {
     {NAME_LION, "🦁"},
     {NAME_LOUP, "🐺"},
     {NAME_OURS, "🐻"},
     {NAME_PIERRE, "🪨"}};
+
+map<string, int> g_killcam = {
+    {NAME_OURS, 0},
+    {NAME_LOUP, 0},
+    {NAME_LION, 0},
+    {NAME_PIERRE, 0}};
 
 // ================================================================================
 // Prototype
@@ -69,12 +75,15 @@ bool Game::run(void) {
     bool continue_run = true;
 
     // Deplace
+    cout << "Deplace all" << endl;
     this->deplaceAll();
-
+    
     // Combat
+    cout << "Fight" << endl;
     this->resolveConflict();
-
+    
     // Print Board
+    cout << "Print" << endl;
     this->printBoardGame();
     
     // Check if player want to continue
@@ -86,6 +95,11 @@ bool Game::run(void) {
             continue_run = false;
         }
     } while (c_raw != '\n' && c_raw != EOF);
+
+    // End where there is only 1 animal
+    if (countAnimals() <= 1) {
+        continue_run = false;
+    }
     
     return continue_run;
 }
@@ -114,7 +128,6 @@ void Game::deplaceAll(void) {
                     // If animal already at correct postion, we pass him
                     continue;
                 }
-
                 toMove = tile->at(i);
                 tile->erase(tile->begin() + i);   // Erase animal from his old tile
 
@@ -140,6 +153,10 @@ void Game::resetGame(void)
     for (uint32_t i = 0; i < nb_animals; i++)
     {
         temp = createAnimal(i % NB_SPECIES); // Create equal population size
+        if (temp == nullptr) {
+            cout << "/!\\ NULL PTR ANIMAL CREATION " << endl;
+            continue;
+        }
         animX = temp->getX();
         animY = temp->getY();
         this->board.at(animY).at(animX).push_back(temp);
@@ -160,7 +177,7 @@ void Game::printBoardGame()
     {
         cout << "|----";
     }
-    cout << "|" << endl;
+    cout << "|▶ y" << endl;
     for (vector<vector<Animal *>> vect : this->board)
     {
         for (vector<Animal *> animalVect : vect)
@@ -187,6 +204,15 @@ void Game::printBoardGame()
         }
         cout << "|" << endl;
     }
+    cout << "▼" << endl;
+    cout << "x" << endl;
+
+    // Killcam
+    cout << "💀 : " << g_killcam[NAME_LION] << " " << g_Animal_IconFromName.at(NAME_LION) << ", ";
+    cout << g_killcam[NAME_LOUP] << " " << g_Animal_IconFromName.at(NAME_LOUP) << ", ";
+    cout << g_killcam[NAME_OURS] << " " << g_Animal_IconFromName.at(NAME_OURS) << ", ";
+    cout << g_killcam[NAME_PIERRE] << " " << g_Animal_IconFromName.at(NAME_PIERRE) << endl;
+
 }
 
 int Game::fight(vector<Animal *> fighters, int fighterOne, int fighterTwo)
@@ -211,53 +237,55 @@ int Game::fight(vector<Animal *> fighters, int fighterOne, int fighterTwo)
     }
     return res;
 }
-map<string, int> Game::resolveConflict()
+map<string, int> Game::resolveConflict(void)
 {
-    map<string, int> killcam = {
-        {NAME_OURS, 0},
-        {NAME_LOUP, 0},
-        {NAME_LION, 0},
-        {NAME_PIERRE, 0}};
+    Animal *toKill;
+    vector<vector<Animal *>>* line;
+    vector<Animal *>* animals;
 
-    for (vector<vector<Animal *>> line : this->board)
-    {
-
-        for (vector<Animal *> animals : line)
-        {
-            if (animals.size() == 2)
+    for (uint32_t y = 0; y < MAX_Y; y++) {
+        line = &this->board.at(y);
+        for (uint32_t x = 0; x < MAX_X; x++) {
+            animals = &line->at(x);
+            
+            if (animals->size() == 2)
             {
-                int toDelete = fight(animals, 0, 1);
-
-                killcam.at(animals.at(toDelete)->getName())++;
-
-                Animal *toKill = animals.at(toDelete);
-                animals.erase(animals.begin() + toDelete);
+                int toDelete = fight(*animals, 0, 1);
+                
+                g_killcam.at(animals->at(toDelete)->getName())++;
+                
+                toKill = animals->at(toDelete);
+                animals->at(toDelete) = nullptr;
+                animals->erase(animals->begin() + toDelete);
                 delete toKill;
             }
-            else if (animals.size() > 2)
+            else if (animals->size() > 2)
             {
                 int firstFighter = 0;
                 int secondFighter = 0;
-                while (animals.size() != 1)
+                while (animals->size() != 1)
                 {
-                    firstFighter = getRand(0, animals.size() - 1);
+                    firstFighter = getRand(0, animals->size() - 1);
                     do
                     {
-                        secondFighter = getRand(0, animals.size() - 1);
+                        secondFighter = getRand(0, animals->size() - 1);
                     } while (firstFighter == secondFighter);
 
-                    int toDelete = fight(animals, firstFighter, 1);
+                    int toDelete = fight(*animals, firstFighter, 1);
 
-                    killcam.at(animals.at(toDelete)->getName())++;
+                    g_killcam.at(animals->at(toDelete)->getName())++;
 
-                    Animal *toKill = animals.at(toDelete);
-                    animals.erase(animals.begin() + toDelete);
+                    toKill = animals->at(toDelete);
+                    animals->at(toDelete) = nullptr;
+                    animals->erase(animals->begin() + toDelete);
                     delete toKill;
                 }
             }
+
         }
     }
-    return killcam;
+
+    return g_killcam;
 }
 
 uint32_t Game::countAnimals(void) {

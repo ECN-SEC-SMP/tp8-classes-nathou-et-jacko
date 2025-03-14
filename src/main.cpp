@@ -43,9 +43,19 @@ void testClass_Lion(void);
 int main(int argc, char const *argv[])
 {
 
+    for (uint32_t i = 0; i < 100; i++) {
+        cout << "\a";
+    }
+    
+
     initRand();
 
     Game game = Game();
+
+    game.printBoardGame();
+
+    cout << "Begin ?";
+    getchar();
 
     cout << "Run" << endl;
     while(game.run());

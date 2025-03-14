@@ -76,7 +76,7 @@ public:
      * @brief Resolve conflict inside the board
      *
      */
-    map<string, int> resolveConflict();
+    map<string, int> resolveConflict(void);
 
     /**
      * @brief Displays the board in a terminal
