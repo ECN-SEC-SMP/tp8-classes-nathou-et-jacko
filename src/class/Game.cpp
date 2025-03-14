@@ -66,11 +66,22 @@ Game::Game()
     this->resetGame();
 };
 
-Game::~Game() {
-
+/**
+ * @brief Destroy the Game:: Game object
+ *
+ */
+Game::~Game()
+{
 }
 
-bool Game::run(void) {
+/**
+ * @brief Do one turn of the game
+ *
+ * @return true if enter pressed
+ * @return false if q pressed
+ */
+bool Game::run(void)
+{
 
     bool continue_run = true;
 
@@ -85,13 +96,15 @@ bool Game::run(void) {
     // Print Board
     cout << "Print" << endl;
     this->printBoardGame();
-    
+
     // Check if player want to continue
     cout << "Press Enter to continue, q to exit" << endl;
     int c_raw;
-    do {
+    do
+    {
         c_raw = (char)getchar();
-        if (c_raw == 'q') {
+        if (c_raw == 'q')
+        {
             continue_run = false;
         }
     } while (c_raw != '\n' && c_raw != EOF);
@@ -104,32 +117,44 @@ bool Game::run(void) {
     return continue_run;
 }
 
-void Game::deplaceAll(void) {
-    vector<Animal*>* tile;
-    Animal* toMove;
+/**
+ * @brief Moves every animals to their new tiles.
+ *
+ */
+void Game::deplaceAll(void)
+{
+    vector<Animal *> *tile;
+    Animal *toMove;
 
     // Deplace in board
-    for (uint32_t y = 0; y < MAX_Y; y++) {
-        for (uint32_t x = 0; x < MAX_X; x++) {
+    for (uint32_t y = 0; y < MAX_Y; y++)
+    {
+        for (uint32_t x = 0; x < MAX_X; x++)
+        {
             tile = &this->board.at(y).at(x);
-            for (uint32_t i = 0; i < tile->size(); i++) {
+            for (uint32_t i = 0; i < tile->size(); i++)
+            {
                 tile->at(i)->deplace(MAX_X, MAX_Y);
             }
         }
     }
 
     // Change position of each animal
-    for (uint32_t y = 0; y < MAX_Y; y++) {
-        for (uint32_t x = 0; x < MAX_X; x++) {
+    for (uint32_t y = 0; y < MAX_Y; y++)
+    {
+        for (uint32_t x = 0; x < MAX_X; x++)
+        {
             tile = &this->board.at(y).at(x);
             // For each anima on this tile
-            for (uint32_t i = 0; i < tile->size(); i++) {
-                if (((uint32_t)tile->at(i)->getX()) == x && ((uint32_t)tile->at(i)->getY()) == y) {
+            for (uint32_t i = 0; i < tile->size(); i++)
+            {
+                if (((uint32_t)tile->at(i)->getX()) == x && ((uint32_t)tile->at(i)->getY()) == y)
+                {
                     // If animal already at correct postion, we pass him
                     continue;
                 }
                 toMove = tile->at(i);
-                tile->erase(tile->begin() + i);   // Erase animal from his old tile
+                tile->erase(tile->begin() + i); // Erase animal from his old tile
 
                 this->board.at(toMove->getY()).at(toMove->getX()).push_back(toMove);
                 i--;
@@ -215,28 +240,46 @@ void Game::printBoardGame()
 
 }
 
+/**
+ * @brief Creates a fight between 2 animals.
+ *
+ * @param fighters Vector of animals that fights
+ * @param fighterOne First animal in the fight
+ * @param fighterTwo Second animal in the fight
+ * @return int Index position of the animal that lost
+ */
 int Game::fight(vector<Animal *> fighters, int fighterOne, int fighterTwo)
 {
+    // Check parameters
     if (fighterOne < 0 || fighterTwo < 0 || fighterOne >= (int)fighters.size() || fighterTwo >= (int)fighters.size())
     {
         throw invalid_argument("Incorrect parameters");
     }
 
     int res = 0;
+
+    // Setup animals attacks
     fighters.at(fighterOne)->setAttaque();
     fighters.at(fighterTwo)->setAttaque();
+
+    // Check if animals got the same attack
     if (fighters.at(fighterOne)->getAttaque().getTypeAttaque() == fighters.at(fighterTwo)->getAttaque().getTypeAttaque())
     {
         res = getRand(0, 1);
-        // killcam.at(animals.at(toDelete)->getName())++;
     }
     else
     {
+        // Do the shifumi if they have 2 differents attack
         res = fighters.at(fighterOne)->attaque(*fighters.at(fighterTwo)) ? 1 : 0;
-        // killcam.at(animals.at(toDelete)->getName())++;
     }
     return res;
 }
+
+/**
+ * @brief Resolves conflict in the game.
+ *
+ * @return map<string, int> Returns a dictionnaire where Key are the animals and the value the number of death
+ */
 map<string, int> Game::resolveConflict(void)
 {
     Animal *toKill;
@@ -259,6 +302,7 @@ map<string, int> Game::resolveConflict(void)
                 animals->erase(animals->begin() + toDelete);
                 delete toKill;
             }
+            // More than 2 animals to fight
             else if (animals->size() > 2)
             {
                 int firstFighter = 0;
@@ -288,15 +332,23 @@ map<string, int> Game::resolveConflict(void)
     return g_killcam;
 }
 
-uint32_t Game::countAnimals(void) {
+/**
+ * @brief Counts the number of animals still alive
+ *
+ * @return uint32_t
+ */
+uint32_t Game::countAnimals(void)
+{
     uint32_t count = 0;
 
-    for (uint32_t y = 0; y < MAX_X; y++) {
-        for (uint32_t x = 0; x < MAX_Y; x++) {
+    for (uint32_t y = 0; y < MAX_X; y++)
+    {
+        for (uint32_t x = 0; x < MAX_Y; x++)
+        {
             count += this->board.at(y).at(x).size();
         }
     }
-    
+
     return count;
 }
 

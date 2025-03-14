@@ -25,6 +25,10 @@ Animal::Animal(int maxX, int maxY, int a, int b)
     this->y = b;
 }
 
+/**
+ * @brief Destroy the Animal:: Animal object
+ * 
+ */
 Animal::~Animal() {
     
 }

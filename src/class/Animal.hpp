@@ -52,7 +52,6 @@ public:
      * 
      */
     virtual ~Animal();
-    // ~Animal();
 
     /**
      * @brief Get the Name object

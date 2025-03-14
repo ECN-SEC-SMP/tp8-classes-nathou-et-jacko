@@ -23,10 +23,23 @@
 // ================================================================================
 // Fonctions
 // ================================================================================
-void initRand(void) {
+/**
+ * @brief Initialize the seed
+ *
+ */
+void initRand(void)
+{
     srand(time(NULL));
 }
 
-int8_t getRand(int8_t min, int8_t max) {
+/**
+ * @brief Gives a random value between the given intervale
+ *
+ * @param min minimum value
+ * @param max maximum value
+ * @return int8_t
+ */
+int8_t getRand(int8_t min, int8_t max)
+{
     return std::rand() % ((max - min) + 1) + min;
 }
