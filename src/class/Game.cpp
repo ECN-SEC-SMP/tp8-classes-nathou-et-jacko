@@ -280,7 +280,7 @@ int Game::fight(vector<Animal *> fighters, int fighterOne, int fighterTwo)
  *
  * @return map<string, int> Returns a dictionnaire where Key are the animals and the value the number of death
  */
-map<string, int> Game::resolveConflict(void)
+void Game::resolveConflict(void)
 {
     Animal *toKill;
     vector<vector<Animal *>>* line;
@@ -329,7 +329,7 @@ map<string, int> Game::resolveConflict(void)
         }
     }
 
-    return g_killcam;
+    return;
 }
 
 /**
